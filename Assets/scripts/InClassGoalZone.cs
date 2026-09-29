@@ -27,12 +27,18 @@ namespace CS6983.Week2ICA
 
         private void OnEnable()
         {
+            PayloadSucceeded += OnPayloadSucceeded;
             ResetRun();
         }
 
         private void OnDisable()
         {
-            return;
+            PayloadSucceeded -= OnPayloadSucceeded;
+        }
+
+        private void OnPayloadSucceeded(float timeToSuccess)
+        {
+            Debug.Log($"{name}: Payload reached the goal zone in {timeToSuccess:F2} seconds.", this);
         }
 
         public void ResetRun()
